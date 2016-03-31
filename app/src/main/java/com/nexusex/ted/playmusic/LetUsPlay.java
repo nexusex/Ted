@@ -2,6 +2,9 @@ package com.nexusex.ted.playmusic;
 
 /**
  * 音频播放类(Service和Activity来持有)
+ * 当在Activity中开始播放时开启前台service(开一个notification),这样在Activity被finish时仍保持播放
+ * 手动关闭notification时关闭service,此时默认应该是停止播放,如果在app界面应该响应停止播放,不在app界面则destroy前台service,彻底退出播放
+ * service被强行回收的状态另外解决
  */
 public class LetUsPlay implements Play {
 	public static final int STATE_PLAYING = 1;
@@ -10,7 +13,7 @@ public class LetUsPlay implements Play {
 
 	private int PLAY_STATE = STATE_STOP;
 
-	private static LetUsPlay mLetUsPlay = null;
+	private volatile static LetUsPlay mLetUsPlay = null;
 
 	private LetUsPlay() {
 	}
