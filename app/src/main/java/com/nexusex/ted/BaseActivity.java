@@ -2,7 +2,7 @@ package com.nexusex.ted;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import com.nexusex.ted.bean.Audio;
+import com.nexusex.ted.bean.MusicInfo;
 import com.nexusex.ted.playmusic.LetUsPlay;
 import com.nexusex.ted.playmusic.OnPlayingListener;
 
@@ -19,15 +19,30 @@ public class BaseActivity extends AppCompatActivity implements OnPlayingListener
 		mLetUsPlay.setOnPlayingListener(this);
 	}
 
-	@Override public void onPlayStateChanged(Audio audio, int playState) {
+	@Override public void onPlayStateChanged(MusicInfo mMusicInfo, int playState) {
 
 	}
 
-	@Override public void onPlaying(Audio audio, int currentPosition, int completeLength) {
+	@Override public void onPlaying(MusicInfo mMusicInfo, int currentPosition, int completeLength) {
 
 	}
 
-	@Override public void onPrepared(Audio audio) {
+	@Override public void onPrepared(MusicInfo mMusicInfo) {
+
+	}
+
+	@Override public void onCompletion() {
+
+	}
+
+	@Override public void onError() {
+
+	}
+
+	@Override public void onSeekToCompleted() {
 
 	}
 }
+
+
+

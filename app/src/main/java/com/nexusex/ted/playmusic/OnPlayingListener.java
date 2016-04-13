@@ -1,6 +1,6 @@
 package com.nexusex.ted.playmusic;
 
-import com.nexusex.ted.bean.Audio;
+import com.nexusex.ted.bean.MusicInfo;
 
 /**
  * 监听音频播放过程中的状态
@@ -9,15 +9,28 @@ public interface OnPlayingListener {
 	/**
 	 * 播放状态发生改变
 	 */
-	void onPlayStateChanged(Audio audio, int playState);
+	void onPlayStateChanged(MusicInfo musicInfo, int playState);
 
 	/**
 	 * 播放进度发生变化
 	 */
-	void onPlaying(Audio audio, int currentPosition, int completeLength);
+	void onPlaying(MusicInfo musicInfo, int currentPosition, int completeLength);
 
 	/**
-	 *prepared完成时调用
+	 * prepared完成时调用
 	 */
-	void onPrepared(Audio audio);
+	void onPrepared(MusicInfo musicInfo);
+
+	/**
+	 * 一首播放完成时调用
+	 */
+	void onCompletion();
+
+	/**
+	 * 播放错误时调用
+	 */
+	void onError();
+
+
+	void onSeekToCompleted();
 }
