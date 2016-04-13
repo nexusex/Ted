@@ -37,17 +37,12 @@ public interface Play {
 	void reset();
 
 	/**
-	 * 获取播放状态
-	 */
-	int getPlayState();
-
-	/**
-	 * 获取正在播放的音频
-	 */
-	MusicInfo getMedia();
-
-	/**
 	 * 切换播放位置
 	 */
 	void setCurrentPosition(int position);
+
+	/**
+	 * 切歌
+	 */
+	void playNextAudio(MusicInfo musicInfo);
 }
