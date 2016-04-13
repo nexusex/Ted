@@ -1,5 +1,7 @@
 package com.nexusex.ted.playmusic;
 
+import com.nexusex.ted.bean.Audio;
+
 /**
  * 音频播放接口,播放类实现此接口
  */
@@ -7,7 +9,7 @@ public interface Play {
 	/**
 	 * 准备播放
 	 */
-	void prepare();
+	void prepare(Audio audio);
 
 	/**
 	 * 开始播放
@@ -25,9 +27,9 @@ public interface Play {
 	void stop();
 
 	/**
-	 * 重新播放
+	 * 释放播放器资源
 	 */
-	void restart();
+	void release();
 
 	/**
 	 * 获取播放状态
@@ -36,15 +38,8 @@ public interface Play {
 
 	/**
 	 * 获取正在播放的音频
-	 * TODO
 	 */
-	void getMedia();
-
-	/**
-	 * 装载音频
-	 * TODO:还要传入音频信息
-	 */
-	void setMedia();
+	Audio getMedia();
 
 	/**
 	 * 切换播放位置
