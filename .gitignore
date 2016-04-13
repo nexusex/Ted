@@ -3,9 +3,13 @@
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
+/.idea/inspectionProfiles
+/.idea/vcs.xml
 .DS_Store
 /build
 /captures
+gradle.properties
+
 # Built application files
 *.apk
 *.ap_
