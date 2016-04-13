@@ -1,48 +1,44 @@
 package com.nexusex.ted;
 
-import android.os.Bundle;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import com.nexusex.ted.bean.MusicInfo;
-import com.nexusex.ted.playmusic.LetUsPlay;
-import com.nexusex.ted.playmusic.OnPlayingListener;
+import android.os.Bundle;
 
-/**
- * Activity基类
- * 持有音频播放类的实例,实现OnPlayingListener接口,可以通知所有activity实时的播放情况
- */
-public class BaseActivity extends AppCompatActivity implements OnPlayingListener {
-	public LetUsPlay mLetUsPlay;
+public class BaseActivity extends AppCompatActivity {
+	private int mRequestCode;
+	private String mRequestPermission;
 
 	@Override protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mLetUsPlay = LetUsPlay.getInstance();
-		mLetUsPlay.setOnPlayingListener(this);
 	}
 
-	@Override public void onPlayStateChanged(MusicInfo mMusicInfo, int playState) {
+	public void requestPermission(int requestCode, String permission) {
+		if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
 
+			if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
+				mRequestCode = requestCode;
+				mRequestPermission = permission;
+				showRequestPermissionRationale(permission);
+			} else {
+				ActivityCompat.requestPermissions(this, new String[] { permission }, requestCode);
+			}
+		}
 	}
 
-	@Override public void onPlaying(MusicInfo mMusicInfo, int currentPosition, int completeLength) {
+	public void showRequestPermissionRationale(String permission) {
 
+		PermissionRationaleDialog dialog = new PermissionRationaleDialog(this);
+		dialog.setPermissionType(permission);
+		dialog.setOnDismissListener(mOnDismissListener);
+		dialog.show();
 	}
 
-	@Override public void onPrepared(MusicInfo mMusicInfo) {
-
-	}
-
-	@Override public void onCompletion() {
-
-	}
-
-	@Override public void onError() {
-
-	}
-
-	@Override public void onSeekToCompleted() {
-
-	}
+	private DialogInterface.OnDismissListener mOnDismissListener = new DialogInterface.OnDismissListener() {
+		@Override public void onDismiss(DialogInterface dialog) {
+			requestPermission(mRequestCode, mRequestPermission);
+		}
+	};
 }
-
-
-

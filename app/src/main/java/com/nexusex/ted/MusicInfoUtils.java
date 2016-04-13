@@ -6,7 +6,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
+import com.google.gson.Gson;
 import com.nexusex.ted.bean.MusicInfo;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,5 +61,20 @@ public class MusicInfoUtils {
 
 	public static Uri getUriWithId(long id) {
 		return ContentUris.withAppendedId(android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, id);
+	}
+
+	public static void saveMusicInfoList(Context context, List<MusicInfo> musicInfos) {
+		String jsonString = new Gson().toJson(musicInfos);
+		String filename = "music.plist";
+
+		FileOutputStream outputStream;
+
+		try {
+			outputStream = context.openFileOutput(filename, Context.MODE_PRIVATE);
+			outputStream.write(jsonString.getBytes());
+			outputStream.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
