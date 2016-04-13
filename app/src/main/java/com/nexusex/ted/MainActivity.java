@@ -8,6 +8,6 @@ public class MainActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		MusicInfoUtils.getMusicInfo(this);
+		MusicInfoUtils.saveMusicInfoList(this, MusicInfoUtils.getMusicInfo(this));
 	}
 }
