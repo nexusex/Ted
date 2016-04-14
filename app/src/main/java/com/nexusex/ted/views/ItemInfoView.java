@@ -29,6 +29,6 @@ public class ItemInfoView extends LinearLayout {
 	}
 
 	private void init() {
-		LayoutInflater.from(getContext()).inflate(R.layout.item_info_view, this, true);
+		LayoutInflater.from(getContext()).inflate(R.layout.itemview_playing_list, this, true);
 	}
 }
