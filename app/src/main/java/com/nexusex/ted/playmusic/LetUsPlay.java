@@ -4,9 +4,10 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Handler;
-import com.nexusex.ted.manager.MusicInfoUtils;
+import android.os.PowerManager;
 import com.nexusex.ted.TedApplication;
 import com.nexusex.ted.bean.MusicInfo;
+import com.nexusex.ted.manager.MusicInfoUtils;
 import com.nexusex.ted.utils.Utils;
 import java.io.IOException;
 
@@ -60,7 +61,6 @@ public class LetUsPlay
 	private void initPlayer() {
 		if (mMediaPlayer == null) {
 			mMediaPlayer = new MediaPlayer();
-			mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 			mMediaPlayer.setOnPreparedListener(this);
 			mMediaPlayer.setOnCompletionListener(this);
 			mMediaPlayer.setOnErrorListener(this);
@@ -69,7 +69,7 @@ public class LetUsPlay
 			mMediaPlayer.reset();
 		}
 		PLAY_STATE = STATE_STOP;
-		mOnPlayingListener.onPlayStateChanged(mMusicInfo, PLAY_STATE);
+		mOnPlayingListener.onPlayStateChanged(PLAY_STATE);
 	}
 
 	@Override public void prepare(MusicInfo musicInfo) {
@@ -82,13 +82,14 @@ public class LetUsPlay
 		}
 		mMusicInfo = musicInfo;
 		try {
+			mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 			mMediaPlayer.setDataSource(mContext, MusicInfoUtils.getUriWithId(mMusicInfo.id));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		mMediaPlayer.prepareAsync();
 		PLAY_STATE = STATE_PREPARING;
-		mOnPlayingListener.onPlayStateChanged(mMusicInfo, PLAY_STATE);
+		mOnPlayingListener.onPlayStateChanged(PLAY_STATE);
 	}
 
 	/**
@@ -100,9 +101,10 @@ public class LetUsPlay
 		}
 		if (PLAY_STATE == STATE_PAUSE) {
 			mMediaPlayer.start();
+			mMediaPlayer.setWakeMode(mContext, PowerManager.PARTIAL_WAKE_LOCK);//保证屏幕熄灭时还能使用cpu
 		}
 		PLAY_STATE = STATE_PLAYING;
-		mOnPlayingListener.onPlayStateChanged(mMusicInfo, PLAY_STATE);
+		mOnPlayingListener.onPlayStateChanged(PLAY_STATE);
 		mHandler.postDelayed(mRunnable, 100);
 	}
 
@@ -114,7 +116,7 @@ public class LetUsPlay
 			mMediaPlayer.pause();
 		}
 		PLAY_STATE = STATE_PAUSE;
-		mOnPlayingListener.onPlayStateChanged(mMusicInfo, PLAY_STATE);
+		mOnPlayingListener.onPlayStateChanged(PLAY_STATE);
 	}
 
 	/**
@@ -125,7 +127,7 @@ public class LetUsPlay
 			mMediaPlayer.stop();
 		}
 		PLAY_STATE = STATE_STOP;
-		mOnPlayingListener.onPlayStateChanged(mMusicInfo, PLAY_STATE);
+		mOnPlayingListener.onPlayStateChanged(PLAY_STATE);
 		//手动stop的话进度条回到初始状态
 		mOnPlayingListener.onPlaying(mMusicInfo, 0, totalAudioLength);
 	}
@@ -139,7 +141,7 @@ public class LetUsPlay
 			mMediaPlayer = null;
 		}
 		PLAY_STATE = STATE_RELEASE;
-		mOnPlayingListener.onPlayStateChanged(mMusicInfo, PLAY_STATE);
+		mOnPlayingListener.onPlayStateChanged(PLAY_STATE);
 	}
 
 	@Override public void reset() {
@@ -156,6 +158,7 @@ public class LetUsPlay
 				stop();
 			} else {
 				mMediaPlayer.seekTo(position);
+				mOnPlayingListener.onPlaying(mMusicInfo, position, totalAudioLength);
 			}
 		}
 	}
@@ -169,7 +172,7 @@ public class LetUsPlay
 		}
 		PLAY_STATE = STATE_STOP;
 		if (mOnPlayingListener != null) {
-			mOnPlayingListener.onPlayStateChanged(mMusicInfo, PLAY_STATE);
+			mOnPlayingListener.onPlayStateChanged(PLAY_STATE);
 		}
 		prepare(musicInfo);
 	}
@@ -196,7 +199,7 @@ public class LetUsPlay
 		totalAudioLength = mediaPlayer.getDuration();
 		if (mOnPlayingListener != null) {
 			mOnPlayingListener.onPlaying(mMusicInfo, 0, totalAudioLength);
-			mOnPlayingListener.onPlayStateChanged(mMusicInfo, PLAY_STATE);
+			mOnPlayingListener.onPlayStateChanged(PLAY_STATE);
 			mOnPlayingListener.onPrepared(mMusicInfo);
 		}
 	}
@@ -213,13 +216,13 @@ public class LetUsPlay
 		}
 		PLAY_STATE = STATE_STOP;
 		if (mOnPlayingListener != null) {
-			mOnPlayingListener.onPlayStateChanged(mMusicInfo, PLAY_STATE);
+			mOnPlayingListener.onPlayStateChanged(PLAY_STATE);
 			mOnPlayingListener.onCompletion();
 		}
 	}
 
 	@Override public boolean onError(MediaPlayer mediaPlayer, int what, int extra) {
-		Utils.handleError(LOG_TAG, what + " " + extra);
+		Utils.handleError(LOG_TAG, "what:" + what + "+extra: " + extra);
 		if (mOnPlayingListener != null) {
 			mOnPlayingListener.onError();
 		}
@@ -228,14 +231,6 @@ public class LetUsPlay
 
 	@Override public void onSeekComplete(MediaPlayer mediaPlayer) {
 		if (mOnPlayingListener != null) {
-			mOnPlayingListener.onPlaying(mMusicInfo, totalAudioLength, totalAudioLength);
-		}
-		if (mMediaPlayer != null) {
-			mMediaPlayer.stop();
-		}
-		PLAY_STATE = STATE_STOP;
-		if (mOnPlayingListener != null) {
-			mOnPlayingListener.onPlayStateChanged(mMusicInfo, PLAY_STATE);
 			mOnPlayingListener.onSeekToCompleted();
 		}
 	}
