@@ -20,7 +20,7 @@ public class BaseMusicActivity extends AppCompatActivity implements OnPlayingLis
 		mLetUsPlay.setOnPlayingListener(this);
 	}
 
-	@Override public void onPlayStateChanged(MusicInfo mMusicInfo, int playState) {
+	@Override public void onPlayStateChanged( int playState) {
 
 	}
 

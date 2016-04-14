@@ -44,7 +44,6 @@ public class LetUsPlay
 
 	private LetUsPlay() {
 		mContext = TedApplication.getContext();
-		initPlayer();
 	}
 
 	public static LetUsPlay getInstance() {
@@ -58,9 +57,10 @@ public class LetUsPlay
 		return mLetUsPlay;
 	}
 
-	private void initPlayer() {
+	@Override public void initPlayer() {
 		if (mMediaPlayer == null) {
 			mMediaPlayer = new MediaPlayer();
+			mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 			mMediaPlayer.setOnPreparedListener(this);
 			mMediaPlayer.setOnCompletionListener(this);
 			mMediaPlayer.setOnErrorListener(this);
@@ -82,7 +82,6 @@ public class LetUsPlay
 		}
 		mMusicInfo = musicInfo;
 		try {
-			mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 			mMediaPlayer.setDataSource(mContext, MusicInfoUtils.getUriWithId(mMusicInfo.id));
 		} catch (IOException e) {
 			e.printStackTrace();
