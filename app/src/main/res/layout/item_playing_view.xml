@@ -38,7 +38,7 @@
 		android:id="@+id/iv_headphone"
 		android:layout_width="wrap_content"
 		android:layout_height="match_parent"
-		android:src="@drawable/headphone"
+		android:src="@drawable/svg_headphone"
 		android:layout_marginEnd="18dp"
 		android:layout_gravity="center_vertical"
 		/>
