@@ -1,9 +1,10 @@
-package com.nexusex.ted;
+package com.nexusex.ted.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
+import com.nexusex.ted.R;
 
 /**
  * Created by davinci42 on 2016/4/13.

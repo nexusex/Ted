@@ -1,4 +1,4 @@
-package com.nexusex.ted;
+package com.nexusex.ted.views;
 
 import android.Manifest;
 import android.app.Dialog;
