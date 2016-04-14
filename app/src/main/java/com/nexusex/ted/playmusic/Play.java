@@ -6,6 +6,12 @@ import com.nexusex.ted.bean.MusicInfo;
  * 音频播放接口,播放类实现此接口
  */
 public interface Play {
+
+	/**
+	 * 初始化
+	 */
+	void initPlayer();
+
 	/**
 	 * 准备播放
 	 */
