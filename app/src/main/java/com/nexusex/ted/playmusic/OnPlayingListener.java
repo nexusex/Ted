@@ -9,7 +9,7 @@ public interface OnPlayingListener {
 	/**
 	 * 播放状态发生改变
 	 */
-	void onPlayStateChanged(MusicInfo musicInfo, int playState);
+	void onPlayStateChanged(int playState);
 
 	/**
 	 * 播放进度发生变化
