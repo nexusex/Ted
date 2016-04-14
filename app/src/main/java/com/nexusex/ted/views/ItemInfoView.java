@@ -11,6 +11,8 @@ import com.nexusex.ted.R;
  */
 public class ItemInfoView extends LinearLayout {
 
+	private boolean mIsFolding;
+
 	public ItemInfoView(Context context) {
 		this(context, null);
 	}
@@ -29,6 +31,30 @@ public class ItemInfoView extends LinearLayout {
 	}
 
 	private void init() {
+
+		mIsFolding = false;
+
 		LayoutInflater.from(getContext()).inflate(R.layout.itemview_playing_list, this, true);
 	}
+
+	public boolean getViewState() {
+		return mIsFolding;
+	}
+
+	public void updateViewState(boolean shouldFold) {
+		if (shouldFold && !mIsFolding) {
+			foldView();
+		} else if (!shouldFold && mIsFolding) {
+			unfoldView();
+		}
+	}
+
+	private void foldView() {
+		mIsFolding = true;
+	}
+
+	private void unfoldView() {
+		mIsFolding = false;
+	}
+
 }

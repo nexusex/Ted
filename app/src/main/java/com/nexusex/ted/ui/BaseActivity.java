@@ -2,19 +2,23 @@ package com.nexusex.ted.ui;
 
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import butterknife.ButterKnife;
 import com.nexusex.ted.views.PermissionRationaleDialog;
 
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
 	private int mRequestCode;
 	private String mRequestPermission;
 
 	@Override protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(getContentViewResLayout());
+		ButterKnife.bind(this);
+		initActivity();
 	}
 
 	public void requestPermission(int requestCode, String permission) {
@@ -43,4 +47,8 @@ public class BaseActivity extends AppCompatActivity {
 			requestPermission(mRequestCode, mRequestPermission);
 		}
 	};
+
+	public abstract int getContentViewResLayout();
+
+	public abstract void initActivity();
 }
