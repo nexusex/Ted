@@ -4,10 +4,10 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Handler;
-import com.nexusex.ted.MusicInfoUtils;
+import com.nexusex.ted.manager.MusicInfoUtils;
 import com.nexusex.ted.TedApplication;
-import com.nexusex.ted.Utils;
 import com.nexusex.ted.bean.MusicInfo;
+import com.nexusex.ted.utils.Utils;
 import java.io.IOException;
 
 /**

@@ -1,4 +1,4 @@
-package com.nexusex.ted;
+package com.nexusex.ted.utils;
 
 import android.util.Log;
 

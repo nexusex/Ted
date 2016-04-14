@@ -1,4 +1,4 @@
-package com.nexusex.ted;
+package com.nexusex.ted.manager;
 
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import com.google.gson.Gson;
 import com.nexusex.ted.bean.MusicInfo;
+import com.nexusex.ted.utils.Utils;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
