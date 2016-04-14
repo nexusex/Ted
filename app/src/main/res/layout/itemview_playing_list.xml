@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="@dimen/item_playing_list_height"
-	xmlns:tools="http://schemas.android.com/tools"
 	>
-
-	<ImageView
-		android:id="@+id/iv_cover"
-		android:layout_width="48dp"
-		android:layout_height="48dp"
-		android:layout_centerVertical="true"
-		tools:src="#787878"
-		android:layout_marginStart="-48dp"
-		/>
 
 	<ImageView
 		android:id="@+id/iv_star"
@@ -25,6 +16,7 @@
 		/>
 
 	<RelativeLayout
+		android:id="@+id/rl_main"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:layout_marginStart="8dp"
@@ -33,10 +25,10 @@
 		>
 
 		<ImageView
-			android:id="@+id/iv_disk"
+			android:id="@+id/iv_disc"
 			android:layout_width="40dp"
 			android:layout_height="40dp"
-			android:layout_marginStart="8dp"
+			android:layout_marginStart="24dp"
 			android:src="@drawable/svg_disc"
 			android:layout_centerVertical="true"
 			/>
@@ -68,9 +60,9 @@
 			android:id="@+id/tv_title"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_toEndOf="@id/iv_disk"
+			android:layout_toEndOf="@id/iv_disc"
 			android:layout_toStartOf="@id/iv_clock"
-			android:layout_marginStart="16dp"
+			android:layout_marginStart="24dp"
 			android:layout_marginTop="10dp"
 			android:textColor="@color/textFirstColor"
 			android:maxLines="1"
@@ -91,5 +83,15 @@
 			/>
 
 	</RelativeLayout>
+
+	<ImageView
+		android:id="@+id/iv_cover"
+		android:layout_width="48dp"
+		android:layout_height="48dp"
+		android:layout_centerVertical="true"
+		android:layout_marginStart="-48dp"
+		android:scaleType="centerCrop"
+		android:src="@drawable/fake_cover"
+		/>
 
 </RelativeLayout>
