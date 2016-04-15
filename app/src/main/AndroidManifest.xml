@@ -26,6 +26,13 @@
 		</activity>
 		<activity android:name=".ui.BaseMusicActivity">
 		</activity>
+
+		<service
+			android:name=".playmusic.MusicService"
+			android:enabled="true"
+			android:exported="true"
+			>
+		</service>
 	</application>
 
 </manifest>
