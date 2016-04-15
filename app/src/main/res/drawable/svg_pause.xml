@@ -1,15 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-	android:height="24dp"
-	android:viewportHeight="365.0"
-	android:viewportWidth="365.0"
-	android:width="24dp"
+	android:width="48dp"
+	android:height="64dp"
+	android:viewportHeight="48"
+	android:viewportWidth="48"
 	>
-	<path
-		android:fillColor="@color/colorPrimary"
-		android:pathData="M74.5,0h73v365h-73z"
-		/>
-	<path
-		android:fillColor="@color/colorPrimary"
-		android:pathData="M217.5,0h73v365h-73z"
-		/>
+	<group>
+		<path
+			android:fillColor="@color/colorPrimary"
+			android:pathData="@string/svg_pause_path"
+			/>
+	</group>
 </vector>

@@ -22,6 +22,7 @@
 				<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
+		<activity android:name=".ui.PlayingListActivity"/>
 
 		<service
 			android:name=".playmusic.MusicService"
@@ -29,6 +30,13 @@
 			android:exported="true"
 			>
 		</service>
+
+		<activity
+			android:name=".ui.PlayMusicActivity"
+			android:label="@string/title_activity_play_music"
+			android:theme="@style/AppTheme"
+			>
+		</activity>
 	</application>
 
 </manifest>
