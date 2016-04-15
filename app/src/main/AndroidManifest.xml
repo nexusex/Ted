@@ -24,6 +24,8 @@
 		</activity>
 		<activity android:name=".ui.PlayingListActivity"/>
 
+		<activity android:name=".ui.PlayingListActivity"/>
+
 		<service
 			android:name=".playmusic.MusicService"
 			android:enabled="true"

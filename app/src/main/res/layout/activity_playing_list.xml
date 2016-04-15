@@ -7,14 +7,41 @@
 	tools:context="com.nexusex.ted.ui.PlayingListActivity"
 	>
 
-	<Toolbar
-		android:id="@+id/toolbar"
+	<android.support.v7.widget.Toolbar
+		android:id="@+id/tb"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:minHeight="?android:attr/actionBarSize"
 		android:background="@color/colorPrimary"
 		android:theme="@android:style/ThemeOverlay.Material.Dark.ActionBar"
-		tools:title="title"
+
 		/>
+
+
+	<RelativeLayout
+		android:id="@+id/rl_media_control"
+		android:layout_width="match_parent"
+		android:layout_height="60dp"
+		android:layout_alignParentBottom="true"
+		android:background="@color/itemBackground"
+		>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:text="Current Music Control Area"
+			android:gravity="center"
+			/>
+
+	</RelativeLayout>
+
+	<FrameLayout
+		android:id="@+id/fl_container"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_below="@id/tb"
+		android:layout_above="@id/rl_media_control"
+		>
+	</FrameLayout>
 
 </RelativeLayout>
