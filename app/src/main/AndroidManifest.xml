@@ -26,6 +26,8 @@
 		</activity>
 		<activity android:name=".ui.BaseMusicActivity">
 		</activity>
+		<activity android:name=".ui.PlayingListActivity">
+		</activity>
 	</application>
 
 </manifest>
