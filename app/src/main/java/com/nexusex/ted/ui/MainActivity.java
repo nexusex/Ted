@@ -16,7 +16,7 @@ public class MainActivity extends BaseMusicActivity {
 	@Override public void initActivity() {
 		mItemInfoView.setOnClickListener(new View.OnClickListener() {
 			@Override public void onClick(View v) {
-				mItemInfoView.updateViewState(!mItemInfoView.getViewState());
+				mItemInfoView.toggleViewState();
 			}
 		});
 	}
