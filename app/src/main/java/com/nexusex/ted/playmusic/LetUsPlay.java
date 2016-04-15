@@ -41,7 +41,7 @@ public class LetUsPlay
 	private MusicInfo mMusicInfo;
 	private Context mContext;
 	private MediaPlayer mMediaPlayer;
-	private int totalAudioLength = 0;
+	private long totalAudioLength = 0;
 
 	private volatile static LetUsPlay mLetUsPlay = null;
 
@@ -84,8 +84,9 @@ public class LetUsPlay
 			return;
 		}
 		mMusicInfo = musicInfo;
+		totalAudioLength = mMusicInfo.getDuration();
 		try {
-			mMediaPlayer.setDataSource(mContext, MusicInfoUtils.getUriWithId(mMusicInfo.id));
+			mMediaPlayer.setDataSource(mContext, MusicInfoUtils.getUriWithId(mMusicInfo.getId()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -198,7 +199,6 @@ public class LetUsPlay
 	 */
 	@Override public void onPrepared(MediaPlayer mediaPlayer) {
 		PLAY_STATE = STATE_PAUSE;
-		totalAudioLength = mediaPlayer.getDuration();
 		if (mOnPlayingListener != null) {
 			mOnPlayingListener.onPlaying(mMusicInfo, 0, totalAudioLength);
 			mOnPlayingListener.onPlayStateChanged(PLAY_STATE);

@@ -14,7 +14,7 @@ public interface OnPlayingListener {
 	/**
 	 * 播放进度发生变化
 	 */
-	void onPlaying(MusicInfo musicInfo, int currentPosition, int completeLength);
+	void onPlaying(MusicInfo musicInfo, long currentPosition, long completeLength);
 
 	/**
 	 * prepared完成时调用

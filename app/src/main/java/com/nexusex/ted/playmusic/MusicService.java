@@ -22,11 +22,11 @@ public class MusicService extends Service {
 	private Notification mNotification;
 
 	private static final String NOTIFICATION_ACTION = "notification_action";
+	private static final int NOTIFICATION_NOTIFY_ID = 1;
 	/*
 	intent keys
 	 */
 	private static final String NOTIFICATION_ACTION_KEY = "notification_action_key";
-	private static final int NOTIFICATION_NOTIFY_ID = 1;
 	private static final int BIG_COVER = 1;
 	private static final int NORMAL_COVER = 2;
 	private static final int BIG_PREVIOUS = 3;
@@ -155,4 +155,5 @@ public class MusicService extends Service {
 		startForeground(NOTIFICATION_NOTIFY_ID, mNotification);
 		mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 	}
+
 }
