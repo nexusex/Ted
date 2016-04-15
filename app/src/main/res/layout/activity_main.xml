@@ -11,7 +11,7 @@
 		android:id="@+id/tv"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:text="Start Activity"
+		android:text="Navigate to Playing List"
 		style="@style/Base.TextAppearance.AppCompat.Title"
 		android:gravity="center"
 		/>

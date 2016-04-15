@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 import com.nexusex.ted.bean.MusicInfo;
 import com.nexusex.ted.utils.Utils;
 import java.io.FileOutputStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,9 +21,9 @@ public class MusicInfoUtils {
 
 	private static final String TAG = "MusicInfoUtils";
 
-	public static List<MusicInfo> getMusicInfo(Context context) {
+	public static ArrayList<MusicInfo> getMusicInfos(Context context) {
 
-		List<MusicInfo> musicInfoList = new ArrayList<>();
+		ArrayList<MusicInfo> musicInfoList = new ArrayList<>();
 
 		ContentResolver contentResolver = context.getContentResolver();
 		Uri uri = android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
