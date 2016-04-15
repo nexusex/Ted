@@ -1,7 +1,6 @@
 package com.nexusex.ted.ui;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import butterknife.ButterKnife;
 import com.nexusex.ted.bean.MusicInfo;
 import com.nexusex.ted.playmusic.LetUsPlay;
@@ -11,7 +10,7 @@ import com.nexusex.ted.playmusic.OnPlayingListener;
  * Activity基类
  * 持有音频播放类的实例,实现OnPlayingListener接口,可以通知所有activity实时的播放情况
  */
-public abstract class BaseMusicActivity extends AppCompatActivity implements OnPlayingListener {
+public abstract class BaseMusicActivity extends BaseActivity implements OnPlayingListener {
 
 	public LetUsPlay mLetUsPlay;
 
@@ -28,7 +27,7 @@ public abstract class BaseMusicActivity extends AppCompatActivity implements OnP
 
 	}
 
-	@Override public void onPlaying(MusicInfo mMusicInfo, int currentPosition, int completeLength) {
+	@Override public void onPlaying(MusicInfo mMusicInfo, long currentPosition, long completeLength) {
 
 	}
 

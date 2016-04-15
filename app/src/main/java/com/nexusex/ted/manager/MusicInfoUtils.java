@@ -44,10 +44,10 @@ public class MusicInfoUtils {
 					String thisTitle = cursor.getString(titleColumn);
 					String thisArtist = cursor.getString(artistColumn);
 					MusicInfo musicInfo = new MusicInfo();
-					musicInfo.id = thisId;
-					musicInfo.artist = thisArtist;
-					musicInfo.duration = thisDuration;
-					musicInfo.title = thisTitle;
+					musicInfo.setId(thisId);
+					musicInfo.setArtist(thisArtist);
+					musicInfo.setDuration(thisDuration);
+					musicInfo.setTitle(thisTitle);
 					musicInfoList.add(musicInfo);
 				}
 			} while (cursor.moveToNext());

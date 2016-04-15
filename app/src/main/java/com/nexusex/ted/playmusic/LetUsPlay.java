@@ -15,6 +15,9 @@ import java.io.IOException;
  * 音频播放类(Service和Activity来持有)
  * 当在Activity中开始播放时开启前台service(开一个notification),这样在Activity被finish时仍保持播放
  * 手动关闭notification时关闭service,这时候得判断一下,如果在app界面未被应该响应停止播放(stop),不在app界面则destroy前台service,释放播放器资源(release)
+ *
+ * 获取到该类的实例后,基本调用顺序  initPlayer->prepare->在onPrepared回调中start->pause->stop->prepare
+ * 释放和重启顺序  在initPlayer之后任何时候调用release->重启调用reset->prepare...
  */
 public class LetUsPlay
 	implements Play, MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener, MediaPlayer.OnErrorListener,
@@ -38,7 +41,7 @@ public class LetUsPlay
 	private MusicInfo mMusicInfo;
 	private Context mContext;
 	private MediaPlayer mMediaPlayer;
-	private int totalAudioLength = 0;
+	private long totalAudioLength = 0;
 
 	private volatile static LetUsPlay mLetUsPlay = null;
 
@@ -81,8 +84,9 @@ public class LetUsPlay
 			return;
 		}
 		mMusicInfo = musicInfo;
+		totalAudioLength = mMusicInfo.getDuration();
 		try {
-			mMediaPlayer.setDataSource(mContext, MusicInfoUtils.getUriWithId(mMusicInfo.id));
+			mMediaPlayer.setDataSource(mContext, MusicInfoUtils.getUriWithId(mMusicInfo.getId()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -195,7 +199,6 @@ public class LetUsPlay
 	 */
 	@Override public void onPrepared(MediaPlayer mediaPlayer) {
 		PLAY_STATE = STATE_PAUSE;
-		totalAudioLength = mediaPlayer.getDuration();
 		if (mOnPlayingListener != null) {
 			mOnPlayingListener.onPlaying(mMusicInfo, 0, totalAudioLength);
 			mOnPlayingListener.onPlayStateChanged(PLAY_STATE);
