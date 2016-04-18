@@ -1,5 +1,6 @@
 package com.nexusex.ted.bean;
 
+import com.nexusex.ted.utils.Utils;
 import java.io.Serializable;
 
 /**
@@ -44,5 +45,9 @@ public class MusicInfo implements Serializable {
 
 	public void setArtist(String artist) {
 		this.artist = artist;
+	}
+
+	public String getFormattedDuration() {
+		return Utils.convertSecondsToMmSs(getDuration());
 	}
 }

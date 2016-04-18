@@ -10,7 +10,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.nexusex.ted.R;
 import com.nexusex.ted.bean.MusicInfo;
-import com.nexusex.ted.utils.Utils;
 import java.util.List;
 
 /**
@@ -54,6 +53,6 @@ public class PlayingListAdapter extends RecyclerView.Adapter<PlayingListAdapter.
 		MusicInfo musicInfo = mMusicInfoList.get(position);
 		holder.tvTitle.setText(musicInfo.getTitle());
 		holder.tvArtist.setText(musicInfo.getArtist());
-		holder.tvDuration.setText(Utils.convertSecondsToMmSs(musicInfo.getDuration()));
+		holder.tvDuration.setText(musicInfo.getFormattedDuration());
 	}
 }

@@ -8,9 +8,9 @@
 	>
 
 	<TextView
-		android:id="@+id/tv"
+		android:id="@+id/tv_list"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
+		android:layout_height="100dp"
 		android:text="Navigate to Playing List"
 		style="@style/Base.TextAppearance.AppCompat.Title"
 		android:gravity="center"
