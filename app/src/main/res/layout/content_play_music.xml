@@ -6,6 +6,7 @@
 	android:layout_height="match_parent"
 	android:layout_marginBottom="@dimen/item_playing_list_height"
 	tools:showIn="@layout/activity_play_music"
+	android:background="@color/white"
 	tools:context="com.nexusex.ted.ui.PlayMusicActivity"
 	>
 
@@ -16,6 +17,7 @@
 		android:orientation="horizontal"
 		android:background="@color/white"
 		android:layout_alignParentBottom="true"
+		android:translationZ="1dp"
 		>
 		<TextView
 			android:id="@+id/play_current_time_tv"
@@ -51,6 +53,7 @@
 		android:layout_height="64dp"
 		android:orientation="horizontal"
 		android:background="@color/white"
+		android:translationZ="1dp"
 		>
 		<ImageButton
 			android:id="@+id/play_loop_style"
@@ -108,12 +111,26 @@
 			android:foreground="?android:attr/selectableItemBackground"
 			/>
 	</LinearLayout>
-    <ImageView
-		android:id="@+id/play_blur_cover"
+	<FrameLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:layout_above="@id/play_action_layout"
-		android:scaleType="centerCrop"
-		/>
+		>
+		<ImageView
+			android:id="@+id/play_blur_cover"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:scaleType="centerCrop"
+			/>
+		<ImageView
+			android:id="@+id/play_cover"
+			android:layout_width="256dp"
+			android:layout_height="256dp"
+			android:layout_gravity="center"
+			android:scaleType="centerCrop"
+			android:src="@drawable/fake_cover"
+			/>
+	</FrameLayout>
+
 
 </RelativeLayout>
