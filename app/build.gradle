@@ -8,6 +8,8 @@ android {
 		applicationId "com.nexusex.ted"
 		minSdkVersion 21
 		targetSdkVersion 23
+//		renderscriptTargetApi 21
+//		renderscriptSupportModeEnabled true
 		versionCode 1
 		versionName "1.0"
 	}
@@ -28,4 +30,6 @@ dependencies {
 	compile 'com.jakewharton:butterknife:7.0.1'
 	compile 'com.android.support:support-v4:23.3.0'
 	compile 'com.android.support:design:23.3.0'
+	compile 'jp.wasabeef:blurry:2.0.0'
+	compile 'com.squareup.picasso:picasso:2.5.2'
 }

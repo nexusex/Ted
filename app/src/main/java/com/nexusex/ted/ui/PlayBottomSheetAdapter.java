@@ -29,6 +29,7 @@ public class PlayBottomSheetAdapter extends RecyclerView.Adapter<PlayBottomSheet
 
 	@Override public void onBindViewHolder(BottomSheetViewHolder holder, int position) {
 		MusicInfo musicInfo = getItem(position);
+		holder.itemTitle.setText("test");
 	}
 
 	@Override public BottomSheetViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

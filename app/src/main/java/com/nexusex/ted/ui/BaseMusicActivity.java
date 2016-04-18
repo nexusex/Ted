@@ -1,7 +1,6 @@
 package com.nexusex.ted.ui;
 
 import android.os.Bundle;
-import butterknife.ButterKnife;
 import com.nexusex.ted.bean.MusicInfo;
 import com.nexusex.ted.playmusic.LetUsPlay;
 import com.nexusex.ted.playmusic.OnPlayingListener;
@@ -16,7 +15,6 @@ public abstract class BaseMusicActivity extends BaseActivity implements OnPlayin
 
 	@Override protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(getContentViewResLayout());
 		mLetUsPlay = LetUsPlay.getInstance();
 		mLetUsPlay.setOnPlayingListener(this);
 	}
@@ -44,9 +42,6 @@ public abstract class BaseMusicActivity extends BaseActivity implements OnPlayin
 	@Override public void onSeekToCompleted() {
 
 	}
-
-	public abstract int getContentViewResLayout();
-
 }
 
 

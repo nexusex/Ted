@@ -15,6 +15,7 @@
 		android:theme="@style/AppTheme.AppBarOverlay"
 		android:background="@color/transparent"
 		app:elevation="0dp"
+		android:translationZ="1dp"
 		>
 
 		<android.support.v7.widget.Toolbar
@@ -23,7 +24,6 @@
 			android:layout_height="?attr/actionBarSize"
 			android:background="@color/transparent"
 			app:popupTheme="@style/AppTheme.PopupOverlay"
-			android:translationZ="0dp"
 			app:elevation="0dp"
 			/>
 
@@ -34,9 +34,10 @@
 	<android.support.v7.widget.RecyclerView
 		android:id="@+id/play_music_rv"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		app:behavior_hideable="true"
-		app:behavior_peekHeight="60dp"
+		android:layout_height="@dimen/bottom_sheet_height"
+		app:behavior_hideable="false"
+		app:behavior_peekHeight="@dimen/item_playing_list_height"
+		android:background="@color/white"
 		app:layout_behavior="@string/bottom_sheet_behavior"
 		></android.support.v7.widget.RecyclerView>
 
