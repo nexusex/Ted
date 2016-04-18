@@ -204,7 +204,8 @@ public class MusicService extends Service implements OnPlayingListener {
 	}
 
 	@Override public void onPlaying(MusicInfo musicInfo, long currentPosition, long completeLength) {
-		mBigRemoteViews.setProgressBar(R.id.big_notification_progress, 100, 30, false);
+		mBigRemoteViews.setProgressBar(R.id.big_notification_progress, (int) currentPosition, (int) completeLength,
+			false);
 		mNotificationManager.notify(NOTIFICATION_NOTIFY_ID, mNotification);
 	}
 

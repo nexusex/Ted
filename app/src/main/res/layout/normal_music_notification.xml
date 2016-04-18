@@ -25,6 +25,8 @@
 		android:textColor="@color/black"
 		android:layout_centerVertical="true"
 		android:textSize="16sp"
+		android:foreground="?android:attr/selectableItemBackground"
+		android:clickable="true"
 		android:background="@null"
 		/>
 	<ImageButton
@@ -34,9 +36,10 @@
 		android:layout_height="match_parent"
 		android:src="@drawable/svg_next"
 		android:scaleType="centerInside"
-		android:background="@null"
 		android:padding="24dp"
 		android:foreground="?android:attr/selectableItemBackground"
+		android:clickable="true"
+		android:background="@null"
 		/>
 	<ImageButton
 		android:id="@+id/notification_switch"
@@ -45,9 +48,10 @@
 		android:layout_height="match_parent"
 		android:src="@drawable/svg_pause"
 		android:scaleType="centerInside"
-		android:background="@null"
 		android:padding="24dp"
 		android:foreground="?android:attr/selectableItemBackground"
+		android:clickable="true"
+		android:background="@null"
 		/>
 
 	<ImageButton
@@ -58,8 +62,9 @@
 		android:src="@drawable/svg_previous"
 		android:scaleType="centerInside"
 		android:padding="24dp"
-		android:background="@null"
 		android:foreground="?android:attr/selectableItemBackground"
+		android:clickable="true"
+		android:background="@null"
 		/>
 
 </RelativeLayout>

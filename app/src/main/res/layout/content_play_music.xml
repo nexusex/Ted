@@ -4,8 +4,105 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	android:layout_marginTop="?attr/actionBarSize"
+	android:layout_marginBottom="@dimen/item_playing_list_height"
 	tools:showIn="@layout/activity_play_music"
 	tools:context="com.nexusex.ted.ui.PlayMusicActivity"
 	>
+
+	<LinearLayout
+		android:id="@+id/play_progress_layout"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:background="@color/white"
+		android:layout_alignParentBottom="true"
+		>
+		<TextView
+			android:id="@+id/play_current_time_tv"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:text="1:12"
+			android:gravity="center_vertical|right"
+			/>
+		<SeekBar
+			android:id="@+id/play_progress"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="6"
+			android:paddingTop="24dp"
+			android:paddingBottom="24dp"
+			/>
+		<TextView
+			android:id="@+id/play_total_time_tv"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:text="2:12"
+			android:gravity="center_vertical|left"
+			/>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:id="@+id/play_action_layout"
+		android:layout_width="match_parent"
+		android:layout_above="@id/play_progress_layout"
+		android:layout_height="64dp"
+		android:orientation="horizontal"
+		android:background="@color/white"
+		>
+		<ImageButton
+			android:layout_width="0dp"
+			android:src="@drawable/random_play"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:background="@null"
+			android:clickable="true"
+			android:scaleType="centerInside"
+			android:foreground="?android:attr/selectableItemBackground"
+			/>
+		<ImageButton
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:background="@null"
+			android:src="@drawable/svg_previous"
+			android:scaleType="centerInside"
+			android:clickable="true"
+			android:foreground="?android:attr/selectableItemBackground"
+			/>
+		<ImageButton
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:background="@null"
+			android:scaleType="centerInside"
+			android:clickable="true"
+			android:src="@drawable/svg_play"
+			android:foreground="?android:attr/selectableItemBackground"
+			/>
+		<ImageButton
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:background="@null"
+			android:scaleType="centerInside"
+			android:clickable="true"
+			android:src="@drawable/svg_next"
+			android:foreground="?android:attr/selectableItemBackground"
+			/>
+		<ImageButton
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:background="@null"
+			android:scaleType="centerInside"
+			android:clickable="true"
+			android:src="@drawable/svg_star"
+			android:foreground="?android:attr/selectableItemBackground"
+			/>
+	</LinearLayout>
 
 </RelativeLayout>
