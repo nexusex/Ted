@@ -109,6 +109,7 @@ public class PlayMusicActivity extends BaseMusicActivity implements View.OnClick
 			case R.id.play_blur_cover:
 				if (isBottomSheetExpand) {
 					mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+					mRecyclerView.smoothScrollToPosition(0);
 				} else {
 					return;
 				}
@@ -154,7 +155,7 @@ public class PlayMusicActivity extends BaseMusicActivity implements View.OnClick
 		actionLayout.animate().translationY(-offset * bottomSheetHeight).setDuration(0);
 		progressLayout.animate().translationY(-offset * bottomSheetHeight).setDuration(0);
 		coverIv.animate()
-			.scaleX(1 - fixOffset)
+			.scaleX(1.0f - fixOffset)
 			.scaleY(1.0f - fixOffset)
 			.translationY(-fixOffset * bottomSheetHeight)
 			.setDuration(0);
@@ -209,6 +210,7 @@ public class PlayMusicActivity extends BaseMusicActivity implements View.OnClick
 	@Override public void onBackPressed() {
 		if (isBottomSheetExpand) {
 			mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+			mRecyclerView.smoothScrollToPosition(0);
 		} else {
 			finishAfterTransition();
 		}
