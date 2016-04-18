@@ -7,7 +7,7 @@ import butterknife.Bind;
 import com.nexusex.ted.R;
 import com.nexusex.ted.playmusic.MusicService;
 
-public class MainActivity extends BaseMusicActivity {
+public class MainActivity extends BaseActivity {
 
 	@Bind(R.id.tv) TextView mTv;
 
