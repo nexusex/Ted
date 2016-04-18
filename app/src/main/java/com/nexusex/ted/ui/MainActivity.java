@@ -6,7 +6,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import com.nexusex.ted.R;
 
-public class MainActivity extends BaseMusicActivity {
+public class MainActivity extends BaseActivity {
 
 	@Bind(R.id.tv) TextView mTv;
 

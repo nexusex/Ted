@@ -14,9 +14,7 @@
 		android:minHeight="?android:attr/actionBarSize"
 		android:background="@color/colorPrimary"
 		android:theme="@android:style/ThemeOverlay.Material.Dark.ActionBar"
-
 		/>
-
 
 	<RelativeLayout
 		android:id="@+id/rl_media_control"
@@ -41,6 +39,7 @@
 		android:layout_height="match_parent"
 		android:layout_below="@id/tb"
 		android:layout_above="@id/rl_media_control"
+		android:layout_margin="8dp"
 		>
 	</FrameLayout>
 

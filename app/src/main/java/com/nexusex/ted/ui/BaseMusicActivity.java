@@ -17,10 +17,8 @@ public abstract class BaseMusicActivity extends BaseActivity implements OnPlayin
 	@Override protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(getContentViewResLayout());
-		ButterKnife.bind(this);
 		mLetUsPlay = LetUsPlay.getInstance();
 		mLetUsPlay.setOnPlayingListener(this);
-		initActivity();
 	}
 
 	@Override public void onPlayStateChanged(int playState) {
@@ -49,7 +47,6 @@ public abstract class BaseMusicActivity extends BaseActivity implements OnPlayin
 
 	public abstract int getContentViewResLayout();
 
-	public abstract void initActivity();
 }
 
 
