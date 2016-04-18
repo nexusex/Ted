@@ -4,7 +4,6 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:layout_marginTop="?attr/actionBarSize"
 	android:layout_marginBottom="@dimen/item_playing_list_height"
 	tools:showIn="@layout/activity_play_music"
 	tools:context="com.nexusex.ted.ui.PlayMusicActivity"
@@ -54,6 +53,7 @@
 		android:background="@color/white"
 		>
 		<ImageButton
+			android:id="@+id/play_loop_style"
 			android:layout_width="0dp"
 			android:src="@drawable/random_play"
 			android:layout_height="match_parent"
@@ -64,6 +64,7 @@
 			android:foreground="?android:attr/selectableItemBackground"
 			/>
 		<ImageButton
+			android:id="@+id/play_previous"
 			android:layout_width="0dp"
 			android:layout_height="match_parent"
 			android:layout_weight="1"
@@ -74,6 +75,7 @@
 			android:foreground="?android:attr/selectableItemBackground"
 			/>
 		<ImageButton
+			android:id="@+id/play_switch"
 			android:layout_width="0dp"
 			android:layout_height="match_parent"
 			android:layout_weight="1"
@@ -84,6 +86,7 @@
 			android:foreground="?android:attr/selectableItemBackground"
 			/>
 		<ImageButton
+			android:id="@+id/play_next"
 			android:layout_width="0dp"
 			android:layout_height="match_parent"
 			android:layout_weight="1"
@@ -94,6 +97,7 @@
 			android:foreground="?android:attr/selectableItemBackground"
 			/>
 		<ImageButton
+			android:id="@+id/play_star"
 			android:layout_width="0dp"
 			android:layout_height="match_parent"
 			android:layout_weight="1"
@@ -104,5 +108,12 @@
 			android:foreground="?android:attr/selectableItemBackground"
 			/>
 	</LinearLayout>
+    <ImageView
+		android:id="@+id/play_blur_cover"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_above="@id/play_action_layout"
+		android:scaleType="centerCrop"
+		/>
 
 </RelativeLayout>
