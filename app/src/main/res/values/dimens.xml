@@ -6,5 +6,6 @@
 	<dimen name="item_playing_list_margin">8dp</dimen>
 	<dimen name="star_image_margin">32dp</dimen>
 	<dimen name="fab_margin">16dp</dimen>
+	<dimen name="music_control_bar_height">80dp</dimen>
 	<dimen name="bottom_sheet_height">240dp</dimen>
 </resources>

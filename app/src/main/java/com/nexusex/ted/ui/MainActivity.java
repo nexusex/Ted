@@ -9,7 +9,7 @@ import com.nexusex.ted.playmusic.MusicService;
 
 public class MainActivity extends BaseActivity {
 
-	@Bind(R.id.tv) TextView mTv;
+	@Bind(R.id.tv_list) TextView mTv;
 
 	@Override public int getContentViewResLayout() {
 		return R.layout.activity_main;
