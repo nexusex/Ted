@@ -10,8 +10,8 @@ import com.google.gson.Gson;
 import com.nexusex.ted.bean.MusicInfo;
 import com.nexusex.ted.utils.Utils;
 import java.io.FileOutputStream;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -78,5 +78,10 @@ public class MusicInfoUtils {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static List<MusicInfo> arrangeMusicInfoListByTitle(List<MusicInfo> musicInfos) {
+		Collections.sort(musicInfos);
+		return musicInfos;
 	}
 }

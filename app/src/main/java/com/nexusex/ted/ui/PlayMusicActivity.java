@@ -62,10 +62,14 @@ public class PlayMusicActivity extends BaseMusicActivity implements View.OnClick
 
 	private void initViews() {
 		mToolbar = (Toolbar) findViewById(R.id.toolbar);
-		mToolbar.setTitle("Yellow");
-		mToolbar.setSubtitle("Coldplay");
+		if (mToolbar != null) {
+			mToolbar.setTitle("Yellow");
+			mToolbar.setSubtitle("Coldplay");
+		}
 		setSupportActionBar(mToolbar);
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		if (getSupportActionBar() != null) {
+			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		}
 		getSupportActionBar().setHomeButtonEnabled(true);
 		changeBlurCover();
 		mRecyclerView.setItemAnimator(new DefaultItemAnimator());

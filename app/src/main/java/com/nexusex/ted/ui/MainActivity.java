@@ -19,7 +19,7 @@ public class MainActivity extends BaseActivity {
 		startService(new Intent(this, MusicService.class));
 		mTv.setOnClickListener(new View.OnClickListener() {
 			@Override public void onClick(View v) {
-				Intent intent = new Intent(MainActivity.this, PlayMusicActivity.class);
+				Intent intent = new Intent(MainActivity.this, PlayingListActivity.class);
 				startActivity(intent);
 			}
 		});

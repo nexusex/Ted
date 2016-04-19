@@ -1,12 +1,13 @@
 package com.nexusex.ted.bean;
 
+import android.support.annotation.NonNull;
 import com.nexusex.ted.utils.Utils;
 import java.io.Serializable;
 
 /**
  * Created by davinci42 on 2016/4/13.
  */
-public class MusicInfo implements Serializable {
+public class MusicInfo implements Serializable, Comparable<MusicInfo> {
 
 	private static final long serialVersionUID = 280394661099113257L;
 
@@ -49,5 +50,9 @@ public class MusicInfo implements Serializable {
 
 	public String getFormattedDuration() {
 		return Utils.convertSecondsToMmSs(getDuration());
+	}
+
+	@Override public int compareTo(@NonNull MusicInfo another) {
+		return getTitle().compareToIgnoreCase(another.getTitle());
 	}
 }

@@ -21,7 +21,8 @@ public class PlayingListActivity extends BaseMusicActivity {
 	@Override public void initActivity() {
 		setSupportActionBar(mToolbar);
 
-		ArrayList<MusicInfo> musicInfoList = MusicInfoUtils.getMusicInfos(this);
+		ArrayList<MusicInfo> musicInfoList =
+			(ArrayList<MusicInfo>) MusicInfoUtils.arrangeMusicInfoListByTitle(MusicInfoUtils.getMusicInfos(this));
 
 		if (getSupportActionBar() != null) {
 			getSupportActionBar().setTitle("Fake Playing List");
