@@ -65,23 +65,5 @@ public class MusicInfoUtils {
 		return ContentUris.withAppendedId(android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, id);
 	}
 
-	public static void saveMusicInfoList(Context context, List<MusicInfo> musicInfos) {
-		String jsonString = new Gson().toJson(musicInfos);
-		String filename = "music.plist";
 
-		FileOutputStream outputStream;
-
-		try {
-			outputStream = context.openFileOutput(filename, Context.MODE_PRIVATE);
-			outputStream.write(jsonString.getBytes());
-			outputStream.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public static List<MusicInfo> arrangeMusicInfoListByTitle(List<MusicInfo> musicInfos) {
-		Collections.sort(musicInfos);
-		return musicInfos;
-	}
 }

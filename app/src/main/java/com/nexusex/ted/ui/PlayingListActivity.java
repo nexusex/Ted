@@ -9,6 +9,7 @@ import butterknife.Bind;
 import com.nexusex.ted.R;
 import com.nexusex.ted.bean.MusicInfo;
 import com.nexusex.ted.manager.MusicInfoUtils;
+import com.nexusex.ted.manager.PlayListManager;
 import java.util.ArrayList;
 
 public class PlayingListActivity extends BaseMusicActivity {
@@ -37,7 +38,7 @@ public class PlayingListActivity extends BaseMusicActivity {
 		setSupportActionBar(mToolbar);
 
 		ArrayList<MusicInfo> musicInfoList =
-			(ArrayList<MusicInfo>) MusicInfoUtils.arrangeMusicInfoListByTitle(MusicInfoUtils.getMusicInfos(this));
+			(ArrayList<MusicInfo>) PlayListManager.arrangeMusicInfoListByTitle(MusicInfoUtils.getMusicInfos(this));
 
 		if (getSupportActionBar() != null) {
 			getSupportActionBar().setTitle("Fake Playing List");
