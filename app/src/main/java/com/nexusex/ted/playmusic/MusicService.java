@@ -7,6 +7,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
+import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
 import android.widget.RemoteViews;
@@ -56,7 +57,7 @@ public class MusicService extends Service implements OnPlayingListener {
 		initRemoteViewsAction();
 	}
 
-	@Override public int onStartCommand(Intent intent, int flags, int startId) {
+	@Override public int onStartCommand(@NonNull Intent intent, int flags, int startId) {
 		String action = intent.getAction();
 		int action_code = intent.getIntExtra(NOTIFICATION_ACTION_KEY, BIG_COVER);
 		if (TextUtils.equals(action, NOTIFICATION_ACTION)) {

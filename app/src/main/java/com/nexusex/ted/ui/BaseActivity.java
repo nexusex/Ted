@@ -34,6 +34,10 @@ public abstract class BaseActivity extends AppCompatActivity {
 		}
 	}
 
+	public boolean checkIfHavePermission(String permission) {
+		return ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED;
+	}
+
 	public void showRequestPermissionRationale(String permission) {
 
 		PermissionRationaleDialog dialog = new PermissionRationaleDialog(this);
