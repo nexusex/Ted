@@ -7,24 +7,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import butterknife.Bind;
 import com.nexusex.ted.R;
-import com.nexusex.ted.bean.MusicInfo;
+import com.nexusex.ted.bean.MusicInfoList;
 import com.nexusex.ted.utils.Utils;
-import java.util.ArrayList;
-import java.util.List;
 
 public class PlayingListFragment extends BaseFragment {
 
 	@Bind(R.id.rv) RecyclerView mRv;
 
-	private String mTitle;
-	private List<MusicInfo> mMusicInfoList;
-	private PlayingListAdapter mRvAdapter;
+	private MusicInfoList mMusicInfoList;
+	private PlayingListRvAdapter mRvAdapter;
 
-	public static PlayingListFragment newInstance(String title, ArrayList<MusicInfo> musicInfoList) {
+	public static PlayingListFragment newInstance(MusicInfoList musicInfoList) {
 		PlayingListFragment playingListFragment = new PlayingListFragment();
 		Bundle args = new Bundle();
 		playingListFragment.setArguments(args);
-		args.putString(BUNDLE_KEY_PLAYING_LIST_TITLE, title);
 		args.putSerializable(BUNDLE_KEY_PLAYING_LIST_MUSICINFO_LIST, musicInfoList);
 		return playingListFragment;
 	}
@@ -35,12 +31,11 @@ public class PlayingListFragment extends BaseFragment {
 
 	@Override public void initFragment() {
 		Bundle args = getArguments();
-		mTitle = args.getString(BUNDLE_KEY_PLAYING_LIST_TITLE);
 
-		mMusicInfoList = (ArrayList<MusicInfo>) args.getSerializable(BUNDLE_KEY_PLAYING_LIST_MUSICINFO_LIST);
+		mMusicInfoList = (MusicInfoList) args.getSerializable(BUNDLE_KEY_PLAYING_LIST_MUSICINFO_LIST);
 
 		if (mRvAdapter == null) {
-			mRvAdapter = new PlayingListAdapter(getContext());
+			mRvAdapter = new PlayingListRvAdapter(getContext());
 		}
 		mRvAdapter.setData(mMusicInfoList);
 		mRvAdapter.notifyDataSetChanged();

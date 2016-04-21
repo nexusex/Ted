@@ -9,7 +9,7 @@ import java.util.List;
 public class MusicInfoList implements Serializable {
 
 	private static final long serialVersionUID = -6905306865533452780L;
-	
+
 	private String title;
 	private List<MusicInfo> musicInfoList;
 

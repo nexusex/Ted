@@ -3,14 +3,17 @@ package com.nexusex.ted.ui;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentTransaction;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import butterknife.Bind;
 import com.nexusex.ted.R;
-import com.nexusex.ted.bean.MusicInfo;
+import com.nexusex.ted.bean.MusicInfoList;
 import com.nexusex.ted.manager.MusicInfoUtils;
-import com.nexusex.ted.manager.PlayListManager;
+import com.nexusex.ted.views.ControlPanemView;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PlayingListActivity extends BaseMusicActivity {
 
@@ -18,7 +21,10 @@ public class PlayingListActivity extends BaseMusicActivity {
 
 	private static final int REQUEST_CODE_STORAGE = 0;
 
-	@Bind(R.id.tb) Toolbar mToolbar;
+	@Bind(R.id.tb) Toolbar mTb;
+	@Bind(R.id.tl) TabLayout mTl;
+	@Bind(R.id.vp) ViewPager mVp;
+	@Bind(R.id.cpv) ControlPanemView mCpv;
 
 	@Override public int getContentViewResLayout() {
 		return R.layout.activity_playing_list;
@@ -35,26 +41,28 @@ public class PlayingListActivity extends BaseMusicActivity {
 
 	private void initView() {
 
-		setSupportActionBar(mToolbar);
-
-		ArrayList<MusicInfo> musicInfoList =
-			(ArrayList<MusicInfo>) PlayListManager.arrangeMusicInfoListByTitle(MusicInfoUtils.getMusicInfos(this));
+		setSupportActionBar(mTb);
 
 		if (getSupportActionBar() != null) {
 			getSupportActionBar().setTitle("Fake Playing List");
 		}
 
-		String tempTitle = "Title";
-		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+		//MusicInfoList musicInfoList = PlayListManager.getMusicInfoListByTitle(this, title);
+		MusicInfoList musicInfoList = MusicInfoUtils.getAllMusicInfoList(this);
 
-		if (getSupportFragmentManager().findFragmentByTag(tempTitle) == null) {
-			transaction.add(R.id.fl_container, PlayingListFragment.newInstance(tempTitle, musicInfoList), tempTitle);
-		} else {
-			transaction.replace(R.id.fl_container, PlayingListFragment.newInstance(tempTitle, musicInfoList),
-				tempTitle);
+		PlayingListFragment allListFragment = PlayingListFragment.newInstance(musicInfoList);
+		List<Fragment> fragmentList = new ArrayList<>();
+		fragmentList.add(allListFragment);
+		fragmentList.add(PlayingListFragment.newInstance(musicInfoList));
+		fragmentList.add(PlayingListFragment.newInstance(musicInfoList));
+
+		PlayingListVpAdapter vpAdapter = new PlayingListVpAdapter(getSupportFragmentManager(), fragmentList);
+		mVp.setAdapter(vpAdapter);
+
+		mTl.setupWithViewPager(mVp);
+		for (int i = 0; i < fragmentList.size(); i++) {
+			mTl.getTabAt(i).setText("List" + i);
 		}
-
-		transaction.commit();
 	}
 
 	@Override public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,

@@ -6,13 +6,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
-import com.google.gson.Gson;
 import com.nexusex.ted.bean.MusicInfo;
+import com.nexusex.ted.bean.MusicInfoList;
 import com.nexusex.ted.utils.Utils;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Created by davinci42 on 2016/4/13.
@@ -21,9 +18,11 @@ public class MusicInfoUtils {
 
 	private static final String TAG = "MusicInfoUtils";
 
-	public static ArrayList<MusicInfo> getMusicInfos(Context context) {
+	public static MusicInfoList getAllMusicInfoList(Context context) {
 
-		ArrayList<MusicInfo> musicInfoList = new ArrayList<>();
+		MusicInfoList musicInfoList = new MusicInfoList();
+		musicInfoList.setMusicInfoList(new ArrayList<MusicInfo>());
+		musicInfoList.setTitle("All");
 
 		ContentResolver contentResolver = context.getContentResolver();
 		Uri uri = android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
@@ -49,7 +48,7 @@ public class MusicInfoUtils {
 					musicInfo.setArtist(thisArtist);
 					musicInfo.setDuration(thisDuration);
 					musicInfo.setTitle(thisTitle);
-					musicInfoList.add(musicInfo);
+					musicInfoList.getMusicInfoList().add(musicInfo);
 				}
 			} while (cursor.moveToNext());
 		}
@@ -58,12 +57,10 @@ public class MusicInfoUtils {
 			cursor.close();
 		}
 
-		return musicInfoList;
+		return PlayListManager.arrangeMusicInfoListByTitle(musicInfoList);
 	}
 
 	public static Uri getUriWithId(long id) {
 		return ContentUris.withAppendedId(android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, id);
 	}
-
-
 }

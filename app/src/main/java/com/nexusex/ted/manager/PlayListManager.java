@@ -23,7 +23,7 @@ public class PlayListManager {
 
 	public static void addMusicInfoToList(Context context, MusicInfo musicInfo) {
 		musicInfoList.getMusicInfoList().add(musicInfo);
-		arrangeMusicInfoListByTitle();
+		musicInfoList = arrangeMusicInfoListByTitle(musicInfoList);
 		saveMusicInfoList(context);
 	}
 
@@ -42,11 +42,12 @@ public class PlayListManager {
 		}
 	}
 
-	public static void arrangeMusicInfoListByTitle() {
-		Collections.sort(musicInfoList.getMusicInfoList());
+	public static MusicInfoList arrangeMusicInfoListByTitle(MusicInfoList musicInfos) {
+		Collections.sort(musicInfos.getMusicInfoList());
+		return musicInfos;
 	}
 
-	public static void getMusicInfoListByTitle(Context context, String title) {
+	public static MusicInfoList getMusicInfoListByTitle(Context context, String title) {
 
 		FileInputStream inputStream;
 
@@ -61,9 +62,13 @@ public class PlayListManager {
 
 			String temp = builder.toString();
 			musicInfoList = new Gson().fromJson(temp, MusicInfoList.class);
+
+			return musicInfoList;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		return null;
 	}
 
 	public static void changeListTitle(Context context, String title) {

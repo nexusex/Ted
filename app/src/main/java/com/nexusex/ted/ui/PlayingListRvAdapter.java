@@ -10,26 +10,26 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.nexusex.ted.R;
 import com.nexusex.ted.bean.MusicInfo;
-import java.util.List;
+import com.nexusex.ted.bean.MusicInfoList;
 
 /**
  * Created by davinci42 on 2016/4/15.
  */
-public class PlayingListAdapter extends RecyclerView.Adapter<PlayingListAdapter.ViewHolder> {
+public class PlayingListRvAdapter extends RecyclerView.Adapter<PlayingListRvAdapter.ViewHolder> {
 
 	private Context mContext;
-	private List<MusicInfo> mMusicInfoList;
+	private MusicInfoList mMusicInfoList;
 
-	public PlayingListAdapter(Context context) {
+	public PlayingListRvAdapter(Context context) {
 		mContext = context;
 	}
 
-	public void setData(List<MusicInfo> musicInfos) {
+	public void setData(MusicInfoList musicInfos) {
 		mMusicInfoList = musicInfos;
 	}
 
 	@Override public int getItemCount() {
-		return mMusicInfoList == null ? 0 : mMusicInfoList.size();
+		return mMusicInfoList == null ? 0 : mMusicInfoList.getMusicInfoList().size();
 	}
 
 	public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -50,7 +50,7 @@ public class PlayingListAdapter extends RecyclerView.Adapter<PlayingListAdapter.
 	}
 
 	@Override public void onBindViewHolder(ViewHolder holder, int position) {
-		MusicInfo musicInfo = mMusicInfoList.get(position);
+		MusicInfo musicInfo = mMusicInfoList.getMusicInfoList().get(position);
 		holder.tvTitle.setText(musicInfo.getTitle());
 		holder.tvArtist.setText(musicInfo.getArtist());
 		holder.tvDuration.setText(musicInfo.getFormattedDuration());
