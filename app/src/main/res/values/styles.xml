@@ -10,6 +10,9 @@
 		<item name="android:windowBackground">@color/windowBackground</item>
 	</style>
 
+	<style name="AppTheme.PlayMusic" parent="AppTheme">
+	</style>
+
 	<style name="AppTheme.AppBarOverlay">
 		parent="ThemeOverlay.AppCompat.Dark.ActionBar"
 	<item name="android:windowActionBarOverlay">true</item>

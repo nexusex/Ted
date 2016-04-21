@@ -12,21 +12,17 @@ import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
 import android.widget.RemoteViews;
 import com.nexusex.ted.R;
-import com.nexusex.ted.bean.MusicInfo;
-import com.nexusex.ted.ui.MainActivity;
-import com.nexusex.ted.utils.Utils;
 
 /**
  * 任何时候player的自动处理都由service来做,activity只负责处理view切换和用户手动行为
  */
-public class MusicService extends Service implements OnPlayingListener {
+public class MusicService extends Service{
 
 	private static final String TAG = "MusicService";
 	private RemoteViews mBigRemoteViews;
 	private RemoteViews mNormalRemoteViews;
 	private NotificationManager mNotificationManager;
 	private Notification mNotification;
-	private LetUsPlay mLetUsPlay;
 
 	private static final String NOTIFICATION_ACTION = "notification_action";
 	private static final int NOTIFICATION_NOTIFY_ID = 100;
@@ -47,13 +43,11 @@ public class MusicService extends Service implements OnPlayingListener {
 	private static final int BIG_PROGRESS = 11;
 
 	@Override public IBinder onBind(Intent intent) {
-		// TODO: Return the communication channel to the service.
 		throw new UnsupportedOperationException("Not yet implemented");
 	}
 
 	@Override public void onCreate() {
 		super.onCreate();
-		initPlayer();
 		initRemoteViewsAction();
 	}
 
@@ -63,10 +57,7 @@ public class MusicService extends Service implements OnPlayingListener {
 		if (TextUtils.equals(action, NOTIFICATION_ACTION)) {
 			switch (action_code) {
 				case BIG_COVER:
-					Utils.handleError(TAG, "click");
-					Intent intent1 = new Intent(this, MainActivity.class);
-					intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-					startActivity(intent1);
+
 					break;
 				case BIG_PREVIOUS:
 
@@ -81,7 +72,6 @@ public class MusicService extends Service implements OnPlayingListener {
 
 					break;
 				case BIG_SHUT:
-					Utils.handleError(TAG, "click");
 					stopSelf();
 					break;
 				case NORMAL_COVER:
@@ -101,11 +91,6 @@ public class MusicService extends Service implements OnPlayingListener {
 			}
 		}
 		return super.onStartCommand(intent, flags, startId);
-	}
-
-	private void initPlayer() {
-		mLetUsPlay = LetUsPlay.getInstance();
-		mLetUsPlay.setOnPlayingListener(this);
 	}
 
 	private void initRemoteViewsAction() {
@@ -166,63 +151,5 @@ public class MusicService extends Service implements OnPlayingListener {
 		mNotification.bigContentView = mBigRemoteViews;
 		startForeground(NOTIFICATION_NOTIFY_ID, mNotification);
 		mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-	}
-
-	/**
-	 * service销毁时释放player资源
-	 */
-	@Override public void onDestroy() {
-		super.onDestroy();
-		if (mLetUsPlay.getPlayState() != LetUsPlay.STATE_RELEASE) {
-			mLetUsPlay.release();
-		}
-	}
-
-	@Override public void onPlayStateChanged(int playState) {
-		switch (playState) {
-			case LetUsPlay.STATE_PAUSE:
-				mBigRemoteViews.setInt(R.id.big_notification_switch, "setImageResource", R.drawable.svg_pause);
-				mNotificationManager.notify(NOTIFICATION_NOTIFY_ID, mNotification);
-				break;
-			case LetUsPlay.STATE_PLAYING:
-				mBigRemoteViews.setInt(R.id.big_notification_switch, "setImageResource", R.drawable.svg_play);
-				mNotificationManager.notify(NOTIFICATION_NOTIFY_ID, mNotification);
-				break;
-			case LetUsPlay.STATE_PREPARING:
-
-				break;
-			case LetUsPlay.STATE_STOP:
-				mBigRemoteViews.setInt(R.id.big_notification_switch, "setImageResource", R.drawable.svg_pause);
-				mBigRemoteViews.setProgressBar(R.id.big_notification_progress, 100, 0, false);
-				mNotificationManager.notify(NOTIFICATION_NOTIFY_ID, mNotification);
-				break;
-			case LetUsPlay.STATE_RELEASE:
-
-				break;
-			default:
-				break;
-		}
-	}
-
-	@Override public void onPlaying(MusicInfo musicInfo, long currentPosition, long completeLength) {
-		mBigRemoteViews.setProgressBar(R.id.big_notification_progress, (int) currentPosition, (int) completeLength,
-			false);
-		mNotificationManager.notify(NOTIFICATION_NOTIFY_ID, mNotification);
-	}
-
-	@Override public void onPrepared(MusicInfo musicInfo) {
-
-	}
-
-	@Override public void onCompletion() {
-
-	}
-
-	@Override public void onError() {
-
-	}
-
-	@Override public void onSeekToCompleted() {
-
 	}
 }

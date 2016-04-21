@@ -23,6 +23,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import com.nexusex.ted.R;
 import com.nexusex.ted.bean.MusicInfo;
+import com.nexusex.ted.playmusic.LetUsPlay;
 import com.nexusex.ted.utils.DensityUtils;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
@@ -54,10 +55,25 @@ public class PlayMusicActivity extends BaseMusicActivity implements View.OnClick
 	private List<MusicInfo> mMusicInfos;
 	private PlayBottomSheetAdapter mBottomSheetAdapter;
 	private BottomSheetBehavior mBottomSheetBehavior;
+	private LetUsPlay mLetUsPlay;
+
+	//测试用
+	private MusicInfo mMusicInfo;
 
 	@Override public void initActivity() {
 		initData();
 		initViews();
+	}
+
+	private void initData() {
+		bottomSheetHeight = DensityUtils.dip2px(this, 180);
+		mMusicInfos = new ArrayList<>();
+		for (int i = 0; i < 100; i++) {
+			mMusicInfos.add(new MusicInfo());
+		}
+		mBottomSheetAdapter = new PlayBottomSheetAdapter(mMusicInfos, this);
+		mLetUsPlay = LetUsPlay.getInstance();
+		mLetUsPlay.initPlayer();
 	}
 
 	private void initViews() {
@@ -69,8 +85,8 @@ public class PlayMusicActivity extends BaseMusicActivity implements View.OnClick
 		setSupportActionBar(mToolbar);
 		if (getSupportActionBar() != null) {
 			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+			getSupportActionBar().setHomeButtonEnabled(true);
 		}
-		getSupportActionBar().setHomeButtonEnabled(true);
 		changeBlurCover();
 		mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 		LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -99,17 +115,23 @@ public class PlayMusicActivity extends BaseMusicActivity implements View.OnClick
 		blurCoverIv.setOnClickListener(this);
 	}
 
-	private void initData() {
-		bottomSheetHeight = DensityUtils.dip2px(this, 180);
-		mMusicInfos = new ArrayList<>();
-		for (int i = 0; i < 100; i++) {
-			mMusicInfos.add(new MusicInfo());
-		}
-		mBottomSheetAdapter = new PlayBottomSheetAdapter(mMusicInfos, this);
-	}
-
 	@Override public void onClick(View v) {
 		switch (v.getId()) {
+			case R.id.play_loop_style:
+
+				break;
+			case R.id.play_previous:
+
+				break;
+			case R.id.play_switch:
+				mLetUsPlay.prepare(mMusicInfo);
+				break;
+			case R.id.play_next:
+
+				break;
+			case R.id.play_star:
+
+				break;
 			case R.id.play_blur_cover:
 				if (isBottomSheetExpand) {
 					mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
@@ -121,30 +143,6 @@ public class PlayMusicActivity extends BaseMusicActivity implements View.OnClick
 			default:
 				break;
 		}
-	}
-
-	@Override public void onPlayStateChanged(int playState) {
-		super.onPlayStateChanged(playState);
-	}
-
-	@Override public void onPlaying(MusicInfo mMusicInfo, long currentPosition, long completeLength) {
-		super.onPlaying(mMusicInfo, currentPosition, completeLength);
-	}
-
-	@Override public void onPrepared(MusicInfo mMusicInfo) {
-		super.onPrepared(mMusicInfo);
-	}
-
-	@Override public void onCompletion() {
-		super.onCompletion();
-	}
-
-	@Override public void onError() {
-		super.onError();
-	}
-
-	@Override public void onSeekToCompleted() {
-		super.onSeekToCompleted();
 	}
 
 	@Override public int getContentViewResLayout() {
